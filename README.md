@@ -1,6 +1,6 @@
 # Ohjelmointitekniikka Harjoitustyö
 
-This is a **fun** *project*!
+This is a **fun** *project*!!
 
 ## Tehtävät
 ### Viikko 1
