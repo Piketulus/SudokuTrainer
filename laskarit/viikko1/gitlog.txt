@@ -1,0 +1,113 @@
+commit bf96cb89a6e2aac5a786274fef058cd645769c0e
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 14:09:39 2023 +0200
+
+    file1 delete, file2 uusi nimi
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit af262c9446f2b564ef4cb65f900ed8be295783ad
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 14:05:33 2023 +0200
+
+    lisätty tiedostoja
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 96395b462502e2357729dc911431140b8fcd3937
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 14:00:34 2023 +0200
+
+    muutoksia
+
+ eka.txt    | 4 +---
+ kolmas.txt | 4 +++-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit aa82752229bbaafa485f219543678a55064f4e9e
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:56:37 2023 +0200
+
+    tiedosto.txt nimetty eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2a9c3e30a52fca018499a7c12cf3d1ad2f001217
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:55:28 2023 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit c89af3522ff94bcbdd1361724db5f666be420160
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:53:14 2023 +0200
+
+    lisää muutoksia tiedosto.txt
+
+ tiedosto.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 2afb0a1f5bb23a45d5eda6d57ff7ad02292a5720
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:52:11 2023 +0200
+
+    muutos tiedosto.txt
+
+ tiedosto.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 2c56f0f031d3aad5193447a0978f6cdc05dad741
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:43:49 2023 +0200
+
+    stuff hakemisto lisätty
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e943ec61ae161dc89cfecbe0e0fa2c0be7a2b40c
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:41:13 2023 +0200
+
+    muutoksia
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 6fd1ab63efc3e1be30e64d7dc911f182b27c20cd
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:34:46 2023 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1b1113f6ffd3dc5a188972598969029c5e8c0740
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:31:44 2023 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 80502df6611313ad826e55c2a0cefdace77d0dd6
+Author: Joel <joel.pietilainen@helsinki.fi>
+Date:   Tue Mar 14 13:11:09 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
