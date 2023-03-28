@@ -8,8 +8,8 @@
         Machine->>Engine: start()
         Engine->>FuelTank: consume(5)
         Machine->>Engine: engine.is_running()
-        Engine->>Tank: fuel_contents
-        Tank-->>Engine: 35
+        Engine->>FuelTank: fuel_contents
+        FuelTank-->>Engine: 35
         Engine-->>Machine: isRunning=True
         Machine->>Engine: engine.use_energy()
         Engine->>FuelTank: consume(10)
