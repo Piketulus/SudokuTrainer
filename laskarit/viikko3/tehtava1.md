@@ -1,6 +1,7 @@
 ```mermaid
  classDiagram
       Game "1" -- "2-8" Player
+      Game "1" -- "2" Dice
       Game "1" -- "1" GameBoard
       Player "1" -- "1" PlayerPiece
       GameBoard "1" -- "40" BoardTile
