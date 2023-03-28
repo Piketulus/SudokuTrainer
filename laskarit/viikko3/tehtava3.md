@@ -14,8 +14,8 @@
         FuelTank-->>Engine: 35
         Engine-->>Machine: isRunning=True
         deactivate Engine
-        deactivate Machine
         Machine->>Engine: engine.use_energy()
+        deactivate Machine
         Engine->>FuelTank: consume(10)
         
 ```
