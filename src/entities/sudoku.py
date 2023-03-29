@@ -4,17 +4,31 @@ class Sudoku:
 
     Attributes:
         size (int): The size of the Sudoku puzzle.
+        grid (list): The grid of the Sudoku puzzle.
         solution (list): The solution of the Sudoku puzzle.
-        difficulty (str): The difficulty of the Sudoku puzzle.
+        difficulty (int): The difficulty of the Sudoku puzzle (0-4, 0 being the most difficult)
         solved (bool): Whether the Sudoku puzzle is solved.
     """
 
-    def __init__(self, size, solution=None, difficulty=0, solved=False):
+    def __init__(self, size, difficulty=0):
         self.size = size
         self.grid = [[0 for i in range(size)] for j in range(size)]
-        self.solution = solution
+        self.solution = None
         self.difficulty = difficulty
-        self.solved = solved
+        self.solved = False
 
     def __str__(self):
-        return f"Grid: {self.grid} Size: {self.size} Solution: {self.solution} Difficulty: {self.difficulty} Solved: {self.solved}"
+        # Print the Sudoku information in a readable format
+        grid = ""
+        for i in range(self.size):
+            for j in range(self.size):
+                grid += str(self.grid[i][j]) + " "
+            grid += "\n"
+
+        solved = ""
+        for i in range(self.size):
+            for j in range(self.size):
+                solved += str(self.solution[i][j]) + " "
+            solved += "\n"
+            
+        return "Sudoku Puzzle:\n" + grid + "\nSolved Sudoku:\n" + solved + "\nDifficulty: " + str(self.difficulty) + "\nSolved: " + str(self.solved)
