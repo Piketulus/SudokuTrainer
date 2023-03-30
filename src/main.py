@@ -2,12 +2,25 @@
 from entities.sudoku import Sudoku
 from services.gameService import GameService
 import time
+import signal
+
+def handler(signum, frame):
+    raise Exception('Action took too much time')
 
 if __name__ == "__main__":
     start = time.time()
-    sudoku = Sudoku(9, 15)
+    sudoku = Sudoku(9, 0)
     gameService = GameService()
-    gameService.createGame(sudoku)
+    done = False
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(3)
+    while not done:
+        try:
+            done = True
+            gameService.createGame(sudoku)
+        except:
+            done = False
+            signal.alarm(3)
     print(sudoku)
     count = 0
     for i in range(sudoku.size):
