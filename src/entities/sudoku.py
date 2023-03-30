@@ -6,7 +6,7 @@ class Sudoku:
         size (int): The size of the Sudoku puzzle.
         grid (list): The grid of the Sudoku puzzle.
         solution (list): The solution of the Sudoku puzzle.
-        difficulty (int): The difficulty of the Sudoku puzzle (0-4, 0 being the most difficult)
+        difficulty (int): The difficulty of the Sudoku puzzle (0-15, 0 being the most difficult)
         solved (bool): Whether the Sudoku puzzle is solved.
     """
 

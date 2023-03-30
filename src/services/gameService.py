@@ -30,6 +30,15 @@ class GameService:
                     return False
 
         return True
+    
+
+    def listValidPlacements(self, sudoku, row, col):
+        # list all valid placements for a given cell
+        validPlacements = []
+        for i in range(1, sudoku.size + 1):
+            if self.validPlacement(sudoku.size, sudoku.grid, row, col, i):
+                validPlacements.append(i)
+        return validPlacements
 
 
     def createRandomSolution(self, sudoku):
@@ -80,6 +89,7 @@ class GameService:
     def solve(self, sudoku, row=0, col=0, testUnique=False):
         # solves a sudoku using backtracking
         grid = sudoku.grid
+
         while grid[row][col] != 0:
             col += 1
             if col == sudoku.size:
@@ -96,6 +106,7 @@ class GameService:
                 if self.solve(sudoku, row, col, testUnique):
                     return True
                 grid[row][col] = 0
+
         return False
 
 
@@ -104,25 +115,34 @@ class GameService:
         self.createRandomSolution(sudoku)
         
         grid = sudoku.grid
-        squareSet = set(range(0, 80))
 
-        while len(squareSet) > 20 + (sudoku.difficulty * 4):
-            remove = random.choice(list(squareSet))
-            squareSet.remove(remove)
+        #find and store the locations of each number in their own set
+        numSet = []
+        for i in range(sudoku.size):
+            numSet.append(set())
+        for i in range(sudoku.size):
+            for j in range(sudoku.size):
+                numSet[grid[i][j] - 1].add(i * sudoku.size + j)
+
+        squareSet = set(range(sudoku.size * sudoku.size))
+        chooseSet = set(range(sudoku.size * sudoku.size))
+
+        while len(squareSet) > 25 + sudoku.difficulty:
+            remove = random.choice(list(chooseSet))
             row = remove // sudoku.size
             col = remove % sudoku.size
+            if len(numSet[grid[row][col] - 1]) == 1:
+                continue
+            
+            numSet[grid[row][col] - 1].remove(remove)
             grid[row][col] = 0
 
-        testcopy = copy.deepcopy(sudoku)
-        while self.solve(testcopy, testUnique=True):
-            row = 0
-            col = 0
-            while testcopy.grid[row][col] == testcopy.solution[row][col]:
-                col += 1
-                if col == sudoku.size:
-                    row += 1
-                    col = 0
-                if row == sudoku.size:
-                    break
-            grid[row][col] = sudoku.solution[row][col]
             testcopy = copy.deepcopy(sudoku)
+            if self.solve(testcopy, testUnique=True):
+                grid[row][col] = sudoku.solution[row][col]
+                chooseSet.remove(remove)
+                numSet[grid[row][col] - 1].add(remove)
+                continue
+
+            squareSet.remove(remove)
+            chooseSet.remove(remove)
