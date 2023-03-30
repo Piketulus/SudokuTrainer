@@ -1,14 +1,9 @@
 import copy
 from math import sqrt
 import random
-from entities.sudoku import Sudoku
 
 class GameService:
     # logic and generation of game
-
-    def __init__(self):
-        pass
-
 
     def validPlacement(self, size, grid, row, col, num):
         # check if num is valid in row

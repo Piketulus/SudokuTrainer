@@ -7,7 +7,6 @@ class Sudoku:
         grid (list): The grid of the Sudoku puzzle.
         solution (list): The solution of the Sudoku puzzle.
         difficulty (int): The difficulty of the Sudoku puzzle (0-15, 0 being the most difficult)
-        solved (bool): Whether the Sudoku puzzle is solved.
     """
 
     def __init__(self, size, difficulty=0):
@@ -15,7 +14,9 @@ class Sudoku:
         self.grid = [[0 for i in range(size)] for j in range(size)]
         self.solution = None
         self.difficulty = difficulty
-        self.solved = False
+
+    def isSolved(self):
+        return self.grid == self.solution
 
     def __str__(self):
         # Print the Sudoku information in a readable format

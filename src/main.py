@@ -13,14 +13,14 @@ if __name__ == "__main__":
     gameService = GameService()
     done = False
     signal.signal(signal.SIGALRM, handler)
-    signal.alarm(3)
+    signal.alarm(5)
     while not done:
         try:
             done = True
             gameService.createGame(sudoku)
         except:
             done = False
-            signal.alarm(3)
+            signal.alarm(5)
     print(sudoku)
     count = 0
     for i in range(sudoku.size):
