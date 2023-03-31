@@ -36,7 +36,7 @@ class Start:
 
     def _start_sudoku(self):
         gameService = GameService()
-        sudoku = gameService.generate_sudoku(9, 0)
+        sudoku = gameService.generate_sudoku(9, 7)
         play = PlaySudoku(sudoku)
         play.show_screen()
         self.quit_screen()

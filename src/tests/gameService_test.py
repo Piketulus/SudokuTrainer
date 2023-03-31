@@ -6,7 +6,7 @@ class GameServiceTest(unittest.TestCase):
     def setUp(self):
         self.gameService = GameService()
 
-    def test_validPlacement(self):
+    def test_valid_placement(self):
         size = 9
         grid = [[5, 0, 3, 8, 0, 6, 1, 2, 0], 
                 [8, 7, 6, 0, 1, 9, 0, 5, 3], 
@@ -20,8 +20,8 @@ class GameServiceTest(unittest.TestCase):
         row = 0
         col = 1
         num = 7
-        self.assertFalse(self.gameService.validPlacement(size, grid, row, col, num))
+        self.assertFalse(self.gameService._valid_placement(size, grid, row, col, num))
         row = 0
         col = 4
         num = 7
-        self.assertTrue(self.gameService.validPlacement(size, grid, row, col, num))
+        self.assertTrue(self.gameService._valid_placement(size, grid, row, col, num))
