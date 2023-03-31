@@ -32,4 +32,4 @@ class Sudoku:
                 solved += str(self.solution[i][j]) + " "
             solved += "\n"
             
-        return "Sudoku Puzzle:\n" + grid + "\nSolved Sudoku:\n" + solved + "\nDifficulty: " + str(self.difficulty) + "\nSolved: " + str(self.solved)
+        return "Sudoku Puzzle:\n" + grid + "\nSolved Sudoku:\n" + solved + "\nDifficulty: " + str(self.difficulty)
