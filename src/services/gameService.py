@@ -7,7 +7,7 @@ import signal
 class GameService:
     # logic and generation of game
 
-    def validPlacement(self, size, grid, row, col, num):
+    def _valid_placement(self, size, grid, row, col, num):
         # check if num is valid in row
         for i in range(size):
             if grid[row][i] == num:
@@ -29,16 +29,7 @@ class GameService:
         return True
     
 
-    def listValidPlacements(self, sudoku, row, col):
-        # list all valid placements for a given cell
-        validPlacements = []
-        for i in range(1, sudoku.size + 1):
-            if self.validPlacement(sudoku.size, sudoku.grid, row, col, i):
-                validPlacements.append(i)
-        return validPlacements
-
-
-    def createRandomSolution(self, sudoku):
+    def _create_random_solution(self, sudoku):
         size = sudoku.size
         boxsize = int(sqrt(size))
         # Baseline Sudoku with numbers filled in
@@ -52,7 +43,7 @@ class GameService:
                 [6, 7, 8, 9, 1, 2, 3, 4, 5],
                 [9, 1, 2, 3, 4, 5, 6, 7, 8]]
         
-        #Randomly shuffle the grid a random number of times
+        #Randomly shuffle the grid a random number of times while keeping the sudoku in correct form
         for i in range(random.randint(20, 100)):
             block = 0
             for j in range(boxsize):
@@ -83,7 +74,7 @@ class GameService:
         sudoku.solution = copy.deepcopy(grid)
         
     
-    def solve(self, sudoku, row=0, col=0, testUnique=False):
+    def _solve(self, sudoku, row=0, col=0, testUnique=False):
         # solves a sudoku using backtracking
         grid = sudoku.grid
 
@@ -97,67 +88,67 @@ class GameService:
                     if sudoku.solution == grid:
                         return False
                 return True
+            
         for i in range(1, sudoku.size + 1):
-            if self.validPlacement(sudoku.size, grid, row, col, i):
+            if self._valid_placement(sudoku.size, grid, row, col, i):
                 grid[row][col] = i
-                if self.solve(sudoku, row, col, testUnique):
+                if self._solve(sudoku, row, col, testUnique):
                     return True
                 grid[row][col] = 0
 
         return False
 
 
-    def createGame(self, sudoku):
+    def _create_puzzle(self, sudoku):
 
-        self.createRandomSolution(sudoku)
+        self._create_random_solution(sudoku)
         
         grid = sudoku.grid
 
-        #find and store the locations of each number in their own set
-        numSet = []
+        number_locations = []
         for i in range(sudoku.size):
-            numSet.append(set())
+            number_locations.append(set())
         for i in range(sudoku.size):
             for j in range(sudoku.size):
-                numSet[grid[i][j] - 1].add(i * sudoku.size + j)
+                number_locations[grid[i][j] - 1].add(i * sudoku.size + j)
 
-        squareSet = set(range(sudoku.size * sudoku.size))
-        chooseSet = set(range(sudoku.size * sudoku.size))
+        square_set = set(range(sudoku.size * sudoku.size))
+        choose_from_set = set(range(sudoku.size * sudoku.size))
 
-        while len(squareSet) > 25 + sudoku.difficulty:
-            remove = random.choice(list(chooseSet))
+        while len(square_set) > 25 + sudoku.difficulty:
+            remove = random.choice(list(square_set))
             row = remove // sudoku.size
             col = remove % sudoku.size
-            if len(numSet[grid[row][col] - 1]) == 1:
+            if len(number_locations[grid[row][col] - 1]) == 1:
                 continue
             
-            numSet[grid[row][col] - 1].remove(remove)
+            number_locations[grid[row][col] - 1].remove(remove)
             grid[row][col] = 0
 
             testcopy = copy.deepcopy(sudoku)
-            if self.solve(testcopy, testUnique=True):
+            if self._solve(testcopy, testUnique=True):
                 grid[row][col] = sudoku.solution[row][col]
-                chooseSet.remove(remove)
-                numSet[grid[row][col] - 1].add(remove)
+                choose_from_set.remove(remove)
+                number_locations[grid[row][col] - 1].add(remove)
                 continue
 
-            squareSet.remove(remove)
-            chooseSet.remove(remove)
+            square_set.remove(remove)
+            choose_from_set.remove(remove)
     
 
-    def handler(signum, frame):
+    def _handler(signum, frame):
         raise Exception('Action took too much time')
 
 
-    def generateSudoku(self, size, difficulty):
+    def generate_sudoku(self, size, difficulty):
         sudoku = Sudoku(size, difficulty)
         done = False
-        signal.signal(signal.SIGALRM, self.handler)
+        signal.signal(signal.SIGALRM, self._handler)
         signal.alarm(5)
         while not done:
             try:
                 done = True
-                self.createGame(sudoku)
+                self._create_puzzle(sudoku)
                 signal.alarm(0)
             except:
                 done = False

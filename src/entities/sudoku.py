@@ -15,11 +15,11 @@ class Sudoku:
         self.solution = None
         self.difficulty = difficulty
 
-    def isSolved(self):
+    def is_solved(self):
         return self.grid == self.solution
 
 
-    def updateGrid(self, row, col, value):
+    def update_grid(self, row, col, value):
         self.grid[row][col] = value
 
 

@@ -4,21 +4,21 @@ from .playSudoku import PlaySudoku
 class UI:
 
     def __init__(self):
-        self.startScreen = Start()
+        self.start_screen = Start()
         self.sudoku = PlaySudoku()
 
 
-    def showStart(self):
-        self.startScreen.showScreen()
+    def show_start(self):
+        self.start_screen.show_screen()
 
 
-    def hideStart(self):
-        self.startScreen.quitScreen()
+    def hide_start(self):
+        self.start_screen.quit_screen()
 
 
-    def showSudoku9(self):
-        self.sudoku.showScreen()
+    def show_play_sudoku(self):
+        self.sudoku.show_screen()
 
 
-    def hideSudoku9(self):
-        self.sudoku.quitScreen()
+    def hide__play_sudoku(self):
+        self.sudoku.quit_screen()
