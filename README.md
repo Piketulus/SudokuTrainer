@@ -1,20 +1,51 @@
-# Ohjelmointitekniikka Harjoitustyö
+# Sudoku Trainer
 
 This is a **fun** *project*!!
 
-## Tehtävät
-### Viikko 1
+## Documentation
 
-[gitlog.txt](laskarit/viikko1/gitlog.txt)
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+- [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
+- [Changelog](./dokumentaatio/changelog.md)
 
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
+## Asennus
 
-### Viikko 2
+1. Install dependencies with:
 
-[coverage.png](laskarit/viikko2/coverage.png)
+```bash
+poetry install
+```
 
-## Dokumentaatio
+2. Start the app with:
 
-[vaatimusmaarittely.md](dokumentaatio/vaatimusmaarittely.md)
+```bash
+poetry run invoke start
+```
 
-[tuntikirjanpito.md](dokumentaatio/tuntikirjanpito.md)
+## Command line commands
+
+### Running the app
+
+Run the app with:
+
+```bash
+poetry run invoke start
+```
+
+### Testing
+
+Run tests with:
+
+```bash
+poetry run invoke test
+```
+
+### Coverage report
+
+Test coverage report can be generated with:
+
+```bash
+poetry run invoke coverage-report
+```
+
+Report generates to _htmlcov_ directory.
