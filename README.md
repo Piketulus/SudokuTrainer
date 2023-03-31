@@ -8,7 +8,7 @@ This is a **fun** *project*!!
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./dokumentaatio/changelog.md)
 
-## Asennus
+## Set-up
 
 1. Install dependencies with:
 
