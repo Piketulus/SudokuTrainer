@@ -1,6 +1,8 @@
 import copy
 from math import sqrt
 import random
+from entities.sudoku import Sudoku
+import signal
 
 class GameService:
     # logic and generation of game
@@ -141,3 +143,23 @@ class GameService:
 
             squareSet.remove(remove)
             chooseSet.remove(remove)
+    
+
+    def handler(signum, frame):
+        raise Exception('Action took too much time')
+
+
+    def generateSudoku(self, size, difficulty):
+        sudoku = Sudoku(size, difficulty)
+        done = False
+        signal.signal(signal.SIGALRM, self.handler)
+        signal.alarm(5)
+        while not done:
+            try:
+                done = True
+                self.createGame(sudoku)
+                signal.alarm(0)
+            except:
+                done = False
+                signal.alarm(5)
+        return sudoku

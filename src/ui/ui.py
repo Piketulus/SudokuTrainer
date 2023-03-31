@@ -1,11 +1,11 @@
 from .start import Start
-from .sudoku9 import Sudoku9
+from .playSudoku import PlaySudoku
 
 class UI:
 
     def __init__(self):
         self.startScreen = Start()
-        self.sudoku9 = Sudoku9()
+        self.sudoku = PlaySudoku()
 
 
     def showStart(self):
@@ -17,8 +17,8 @@ class UI:
 
 
     def showSudoku9(self):
-        self.sudoku9.showScreen()
+        self.sudoku.showScreen()
 
 
     def hideSudoku9(self):
-        self.sudoku9.quitScreen()
+        self.sudoku.quitScreen()

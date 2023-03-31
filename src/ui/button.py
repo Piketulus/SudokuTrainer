@@ -2,7 +2,7 @@ import pygame
 
 class Button:
 
-    def __init__(self, x, y, width, height, text, normalcolor, hovercolor, text_color, font, action=None):
+    def __init__(self, x, y, width, height, text, normalcolor, hovercolor, text_color, font, action=None, usable=True):
         self.x = x
         self.y = y
         self.width = width
@@ -14,6 +14,7 @@ class Button:
         self.text_color = text_color
         self.font = font
         self.action = action
+        self.usable = usable
 
 
     def draw(self, screen):
@@ -23,12 +24,13 @@ class Button:
     
 
     def process(self):
-        mousepos = pygame.mouse.get_pos()
-        self.color = self.normalcolor
-        if self.x < mousepos[0] < self.x + self.width and self.y < mousepos[1] < self.y + self.height:
-            if pygame.mouse.get_pressed()[0]:
-                self.color = self.hovercolor
-                if self.action != None:
-                    self.action()
-            else:
-                self.color = self.hovercolor
+        if self.usable:
+            mousepos = pygame.mouse.get_pos()
+            self.color = self.normalcolor
+            if self.x < mousepos[0] < self.x + self.width and self.y < mousepos[1] < self.y + self.height:
+                if pygame.mouse.get_pressed()[0]:
+                    self.color = self.hovercolor
+                    if self.action != None:
+                        self.action()
+                else:
+                    self.color = self.hovercolor

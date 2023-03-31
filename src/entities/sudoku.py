@@ -18,6 +18,11 @@ class Sudoku:
     def isSolved(self):
         return self.grid == self.solution
 
+
+    def updateGrid(self, row, col, value):
+        self.grid[row][col] = value
+
+
     def __str__(self):
         # Print the Sudoku information in a readable format
         grid = ""
