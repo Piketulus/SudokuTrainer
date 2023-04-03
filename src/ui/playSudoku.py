@@ -103,7 +103,7 @@ class PlaySudoku:
             if self._selected != None:
                 self._selected.color = (200, 200, 200)
             if self._sudoku.is_solved():
-                screen.blit(self.font.render("Solved!", 1, (0, 0, 0)), (250, 600))
+                screen.blit(self._font.render("Solved!", 1, (0, 0, 0)), (250, 600))
             pygame.display.flip()
 
 
