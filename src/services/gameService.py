@@ -3,6 +3,7 @@ from math import sqrt
 import random
 from entities.sudoku import Sudoku
 import signal
+import pygame
 
 class GameService:
     # logic and generation of game
@@ -151,6 +152,7 @@ class GameService:
                 self._create_puzzle(sudoku)
                 signal.alarm(0)
             except:
+                pygame.event.pump()
                 done = False
                 signal.alarm(5)
         return sudoku
