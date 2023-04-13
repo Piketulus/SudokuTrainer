@@ -8,7 +8,26 @@ class PlaySudoku:
         self._sudoku = sudoku
         self._objects = []
         self._selected = None
+        self._font = pygame.font.SysFont("comicsans", 30)
+        self.solved = False
 
+
+    def solved_graphic(self, screen):
+        #displays the solved screen
+        self._selected.color = (255, 255, 255)
+        self._selected.draw(screen)
+        self._selected = None
+        for object in self._objects:
+            object.text = ""
+            object.draw(screen)
+            pygame.display.flip()
+            pygame.event.pump()
+            pygame.time.wait(50)
+        screen.fill((255, 255, 255))
+        screen.blit(self._font.render("Solved!", 1, (0, 255, 0)), (225, 5))
+        pygame.display.flip()
+        self.solved = True
+    
 
     def _draw_lines(self, screen):
         #draws the lines of the sudoku grid and the 3x3 boxes

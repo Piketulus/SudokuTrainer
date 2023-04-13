@@ -11,6 +11,7 @@ class Start:
         self.objects = []
         self.screen = pygame.display.set_mode((550, 700))
         pygame.display.set_caption("Sudoku")
+        self.font = pygame.font.SysFont("comicsans", 30)
 
     def _start(self):
 
@@ -20,9 +21,10 @@ class Start:
         elif self.current_screen == "playSudoku":
             gameService = GameService()
             self.screen.fill((255,255,255))
-            #self.screen.blit("Loading your Sudoku!", (550/2, 700/2))
+            self.screen.blit(self.font.render("Generating your sudoku,", 1, (0, 0, 0)), (100, 200))
+            self.screen.blit(self.font.render("please wait...", 1, (0, 0, 0)), (180, 300))
             pygame.display.flip()
-            sudoku = gameService.generate_sudoku(9, 1)
+            sudoku = gameService.generate_sudoku(9, 55)
             play = PlaySudoku(sudoku)
             play.draw(self.screen)
             self.objects = play._objects
@@ -75,6 +77,10 @@ class Start:
             if self.current_screen == "playSudoku":
                 if play._selected != None:
                     play._selected.color = (200, 200, 200)
+                    
+                if play._sudoku.is_solved() and play.solved == False:
+                    play.solved_graphic(self.screen)
+
             pygame.display.flip()
 
 
