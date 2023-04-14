@@ -15,6 +15,7 @@ class Button:
         self.font = font
         self.action = action
         self.usable = usable
+        self._clicked = False
 
 
     def draw(self, screen):
@@ -28,9 +29,12 @@ class Button:
             mousepos = pygame.mouse.get_pos()
             self.color = self.normalcolor
             if self.x < mousepos[0] < self.x + self.width and self.y < mousepos[1] < self.y + self.height:
-                if pygame.mouse.get_pressed()[0]:
+                if pygame.mouse.get_pressed()[0] and not self._clicked:
+                    self._clicked = True
                     self.color = self.hovercolor
                     if self.action != None:
                         self.action()
+                elif not pygame.mouse.get_pressed()[0] and self._clicked:
+                    self._clicked = False
                 else:
                     self.color = self.hovercolor
