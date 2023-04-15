@@ -12,6 +12,16 @@ def test(ctx):
 
 
 @task
+def lint(ctx):
+    ctx.run("pylint src", pty=True)
+
+
+@task
+def format(ctx):  # pylint: disable=redefined-builtin
+    ctx.run("autopep8 --in-place --recursive src", pty=True)
+
+
+@task
 def coverage(ctx):
     ctx.run("coverage run --branch -m pytest src", pty=True)
 
