@@ -1,5 +1,6 @@
 import pygame
 
+
 class Button:
 
     def __init__(self, x, y, width, height, text, normalcolor, hovercolor, text_color, font, action=None, usable=True):
@@ -17,12 +18,12 @@ class Button:
         self.usable = usable
         self._clicked = False
 
-
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(screen, self.color,
+                         (self.x, self.y, self.width, self.height))
         text = self.font.render(self.text, 1, self.text_color)
-        screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
-    
+        screen.blit(text, (self.x + (self.width/2 - text.get_width()/2),
+                    self.y + (self.height/2 - text.get_height()/2)))
 
     def process(self):
         if self.usable:

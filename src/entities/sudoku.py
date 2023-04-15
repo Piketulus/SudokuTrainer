@@ -12,16 +12,14 @@ class Sudoku:
     def __init__(self, size, difficulty=0):
         self.size = size
         self.grid = [[0 for i in range(size)] for j in range(size)]
-        self.solution = None
+        self.solution = [[0 for i in range(size)] for j in range(size)]
         self.difficulty = difficulty
 
     def is_solved(self):
         return self.grid == self.solution
 
-
     def update_grid(self, row, col, value):
         self.grid[row][col] = value
-
 
     def __str__(self):
         # Print the Sudoku information in a readable format
@@ -36,5 +34,6 @@ class Sudoku:
             for j in range(self.size):
                 solved += str(self.solution[i][j]) + " "
             solved += "\n"
-            
-        return "Sudoku Puzzle:\n" + grid + "\nSolved Sudoku:\n" + solved + "\nDifficulty: " + str(self.difficulty)
+
+        return "Puzzle:\n" + grid + "\nSudoku:\n" + solved + "\nDifficulty: " + str(self.difficulty)
+    

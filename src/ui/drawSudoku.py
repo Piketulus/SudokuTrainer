@@ -2,9 +2,10 @@ from math import sqrt
 import pygame
 from .button import Button
 
+
 class DrawSudoku:
 
-    #draws and creates the elements of the sudoku playing screen
+    # draws and creates the elements of the sudoku playing screen
 
     def __init__(self, sudoku):
         self.sudoku = sudoku
@@ -17,9 +18,8 @@ class DrawSudoku:
         self._seconds = 0
         self._milliseconds = 0
 
-
     def solved_graphic(self, screen):
-        #displays the solved screen
+        # displays the solved screen
         self.selected.color = (255, 255, 255)
         self.selected.draw(screen)
         self.selected = None
@@ -34,21 +34,23 @@ class DrawSudoku:
         screen.blit(self._font.render("Solved!", 1, (0, 255, 0)), (225, 100))
         pygame.display.flip()
         self.solved = True
-    
 
     def _draw_lines(self, screen):
-        #draws the lines of the sudoku grid and the 3x3 boxes
+        # draws the lines of the sudoku grid and the 3x3 boxes
         for i in range(self.sudoku.size + 1):
             if i % (int(sqrt(self.sudoku.size))) == 0:
-                pygame.draw.line(screen, (0, 0, 0), (50 + i * 50, 50), (50 + i * 50, 500), 3)
-                pygame.draw.line(screen, (0, 0, 0), (50, 50 + i * 50), (500, 50 + i * 50), 3)
+                pygame.draw.line(screen, (0, 0, 0),
+                                 (50 + i * 50, 50), (50 + i * 50, 500), 3)
+                pygame.draw.line(screen, (0, 0, 0),
+                                 (50, 50 + i * 50), (500, 50 + i * 50), 3)
             else:
-                pygame.draw.line(screen, (0, 0, 0), (50 + i * 50, 50), (50 + i * 50, 500), 1)
-                pygame.draw.line(screen, (0, 0, 0), (50, 50 + i * 50), (500, 50 + i * 50), 1)
-    
+                pygame.draw.line(screen, (0, 0, 0),
+                                 (50 + i * 50, 50), (50 + i * 50, 500), 1)
+                pygame.draw.line(screen, (0, 0, 0),
+                                 (50, 50 + i * 50), (500, 50 + i * 50), 1)
 
     def _draw_boxes(self):
-        #draws the boxes in the grid that can be clicked on 
+        # draws the boxes in the grid that can be clicked on
         for i in range(self.sudoku.size):
             for j in range(self.sudoku.size):
                 if self.sudoku.grid[i][j] == 0:
@@ -57,22 +59,22 @@ class DrawSudoku:
                 else:
                     usable = False
                     bold = True
-                self.objects.append(Button(52 + j * 50, 52 + i * 50, 48, 48, "", (255, 255, 255), (200, 200, 200), (0, 0, 0), pygame.font.SysFont("comicsans", 30, bold), self._select, usable))
-    
+                self.objects.append(Button(52 + j * 50, 52 + i * 50, 48, 48, "", (255, 255, 255), (200,
+                                    200, 200), (0, 0, 0), pygame.font.SysFont("comicsans", 30, bold), self._select, usable))
 
     def _draw_numbers(self):
-        #draws the numbers in the grid in the buttons
+        # draws the numbers in the grid in the buttons
         for i in range(self.sudoku.size):
             for j in range(self.sudoku.size):
                 if self.sudoku.grid[i][j] != 0:
-                    self.objects[i * self.sudoku.size + j].text = str(self.sudoku.grid[i][j])
-    
+                    self.objects[i * self.sudoku.size +
+                                 j].text = str(self.sudoku.grid[i][j])
 
     def _select(self):
         mousepos = pygame.mouse.get_pos()
-        index = ((mousepos[1] - 50) // 50 * self.sudoku.size) + ((mousepos[0] - 50) // 50)
+        index = ((mousepos[1] - 50) // 50 *
+                 self.sudoku.size) + ((mousepos[0] - 50) // 50)
         self.selected = self.objects[index]
-        
 
     def _undo(self):
         if len(self.undo_stack) > 0:
@@ -84,9 +86,8 @@ class DrawSudoku:
                 number = int(number)
             self.sudoku.update_grid(row, col, number)
 
-    
     def update_time(self, screen, time):
-        #updates the time on the screen
+        # updates the time on the screen
         if self._milliseconds > 1000:
             self._seconds += 1
             self._milliseconds -= 1000
@@ -98,15 +99,16 @@ class DrawSudoku:
         if secs < 10:
             secs = "0" + str(secs)
         screen.fill((255, 255, 255), (190, 620, 360, 40))
-        time_text = self._font.render(f"Time: {self._minutes}:{secs}", 1, (0, 0, 0))
+        time_text = self._font.render(
+            f"Time: {self._minutes}:{secs}", 1, (0, 0, 0))
         screen.blit(time_text, (190, 620))
 
-
     def draw(self, screen):
-        #draws the sudoku grid and the buttons onto the given screen, called from outside the class
+        # draws the sudoku grid and the buttons onto the given screen, called from outside the class
         screen.fill((255, 255, 255))
         self._draw_lines(screen)
         self._draw_boxes()
         self._draw_numbers()
-        undo_button = Button(50, 550, 100, 50, "Undo", (255, 255, 255), (200, 200, 200), (0, 0, 0), pygame.font.SysFont("comicsans", 30), self._undo, True)
+        undo_button = Button(50, 550, 100, 50, "Undo", (255, 255, 255), (200, 200, 200), (
+            0, 0, 0), pygame.font.SysFont("comicsans", 30), self._undo, True)
         self.objects.append(undo_button)
