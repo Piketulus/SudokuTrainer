@@ -101,7 +101,7 @@ class GameService:
 
 
     def _create_puzzle(self, sudoku):
-
+        # creates a puzzle from a solved sudoku by trying to remove numbers while keeping the sudoku uniquely solvable
         self._create_random_solution(sudoku)
         
         grid = sudoku.grid
@@ -129,7 +129,8 @@ class GameService:
             testcopy = copy.deepcopy(sudoku)
             if self._solve(testcopy, testUnique=True):
                 grid[row][col] = sudoku.solution[row][col]
-                choose_from_set.remove(remove)
+                if remove in choose_from_set:
+                    choose_from_set.remove(remove)
                 number_locations[grid[row][col] - 1].add(remove)
                 continue
 
@@ -142,6 +143,7 @@ class GameService:
 
 
     def generate_sudoku(self, size, difficulty):
+        #called from outside the class to generate a sudoku given a size and difficulty
         sudoku = Sudoku(size, difficulty)
         done = False
         signal.signal(signal.SIGALRM, self._handler)

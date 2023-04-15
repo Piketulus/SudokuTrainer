@@ -4,6 +4,8 @@ from .button import Button
 
 class DrawSudoku:
 
+    #draws and creates the elements of the sudoku playing screen
+
     def __init__(self, sudoku):
         self.sudoku = sudoku
         self.objects = []
@@ -11,6 +13,9 @@ class DrawSudoku:
         self.selected = None
         self._font = pygame.font.SysFont("comicsans", 30)
         self.solved = False
+        self._minutes = 0
+        self._seconds = 0
+        self._milliseconds = 0
 
 
     def solved_graphic(self, screen):
@@ -25,7 +30,7 @@ class DrawSudoku:
             pygame.event.pump()
             pygame.time.wait(50)
         self.objects = []
-        screen.fill((255, 255, 255))
+        screen.fill((255, 255, 255), (0, 0, 550, 545))
         screen.blit(self._font.render("Solved!", 1, (0, 255, 0)), (225, 100))
         pygame.display.flip()
         self.solved = True
@@ -79,8 +84,26 @@ class DrawSudoku:
                 number = int(number)
             self.sudoku.update_grid(row, col, number)
 
+    
+    def update_time(self, screen, time):
+        #updates the time on the screen
+        if self._milliseconds > 1000:
+            self._seconds += 1
+            self._milliseconds -= 1000
+        if self._seconds > 60:
+            self._minutes += 1
+            self._seconds -= 60
+        self._milliseconds += time
+        secs = self._seconds
+        if secs < 10:
+            secs = "0" + str(secs)
+        screen.fill((255, 255, 255), (190, 620, 360, 40))
+        time_text = self._font.render(f"Time: {self._minutes}:{secs}", 1, (0, 0, 0))
+        screen.blit(time_text, (190, 620))
+
 
     def draw(self, screen):
+        #draws the sudoku grid and the buttons onto the given screen, called from outside the class
         screen.fill((255, 255, 255))
         self._draw_lines(screen)
         self._draw_boxes()
