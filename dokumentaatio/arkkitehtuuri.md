@@ -1,7 +1,7 @@
-# Arkkitehtuurikuvaus
+# Architectural description
 
-## Rakenne
+## Structure
 
-Ohjelman rakenne noudattelee kolmitasoista kerrosarkkitehtuuria, ja koodin luokka/pakkausrakenne on seuraava:
+The structure of the program follows a three-tier architecture, and the class/packaging diagram of the code is as follows:
 
 ![Pakkausrakenne](./kuvat/arkkitehtuuri-pakkaus-luokat.png)
