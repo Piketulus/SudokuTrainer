@@ -46,34 +46,31 @@ class GameService:
 
         # Randomly shuffle the grid a random number
         # of times while keeping the sudoku in correct form
-        for i in range(random.randint(20, 100)):
+        for _ in range(random.randint(20, 100)):
             block = 0
-            for j in range(boxsize):
-                if random.randint(0, 1) == 1:
-                    rows = random.sample(range(block, block + boxsize), 2)
-                    columns = random.sample(range(block, block + boxsize), 2)
-                    # swap two rows in the grid
-                    grid[rows[0]], grid[rows[1]] = grid[rows[1]], grid[rows[0]]
-                    # swap two columns in the grid
-                    for k in range(size):
-                        grid[k][columns[0]], grid[k][columns[1]
-                                                     ] = grid[k][columns[1]], grid[k][columns[0]]
+            for _ in range(boxsize):
+                rows = random.sample(range(block, block + boxsize), 2)
+                columns = random.sample(range(block, block + boxsize), 2)
+                # swap two rows in the grid
+                grid[rows[0]], grid[rows[1]] = grid[rows[1]], grid[rows[0]]
+                # swap two columns in the grid
+                for i in range(size):
+                    grid[i][columns[0]], grid[i][columns[1]
+                                                    ] = grid[i][columns[1]], grid[i][columns[0]]
                 block += boxsize
 
-            if random.randint(0, 1) == 1:
-                # swap two row blocks in the grid
-                blocks = random.sample(range(0, size, boxsize), 2)
-                for k in range(boxsize):
-                    grid[blocks[0] + k], grid[blocks[1] +
-                                              k] = grid[blocks[1] + k], grid[blocks[0] + k]
+            # swap two row blocks in the grid
+            blocks = random.sample(range(0, size, boxsize), 2)
+            for i in range(boxsize):
+                grid[blocks[0] + i], grid[blocks[1] +
+                                            i] = grid[blocks[1] + i], grid[blocks[0] + i]
 
-            if random.randint(0, 1) == 1:
-                # swap two column blocks in the grid
-                blocks = random.sample(range(0, size, boxsize), 2)
-                for k in range(boxsize):
-                    for l in range(size):
-                        grid[l][blocks[0] + k], grid[l][blocks[1] +
-                                                k] = grid[l][blocks[1] + k], grid[l][blocks[0] + k]
+            # swap two column blocks in the grid
+            blocks = random.sample(range(0, size, boxsize), 2)
+            for i in range(boxsize):
+                for j in range(size):
+                    grid[j][blocks[0] + i], grid[j][blocks[1] +
+                                            i] = grid[j][blocks[1] + i], grid[j][blocks[0] + i]
 
         sudoku.grid = copy.deepcopy(grid)
         sudoku.solution = copy.deepcopy(grid)

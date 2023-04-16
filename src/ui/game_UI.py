@@ -1,7 +1,7 @@
 import pygame
 from services.game_service import GameService
 from .button import Button
-from .drawSudoku import DrawSudoku
+from .draw_sudoku import DrawSudoku
 import sys
 
 
