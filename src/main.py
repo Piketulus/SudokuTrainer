@@ -1,4 +1,4 @@
-from ui.gameUI import UI
+from ui.game_UI import UI
 
 if __name__ == "__main__":
 
