@@ -7,6 +7,7 @@ This is a **fun** *project*!!
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./dokumentaatio/changelog.md)
+- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 
 ## Set-up
 
@@ -49,3 +50,11 @@ poetry run invoke coverage-report
 ```
 
 Report generates to _htmlcov_ directory.
+
+### Pylint
+
+The checks defined by the file .pylintrc can be performed with the command:
+
+```bash
+poetry run invoke lint
+```
