@@ -36,4 +36,3 @@ class Sudoku:
             solved += "\n"
 
         return "Puzzle:\n" + grid + "\nSudoku:\n" + solved + "\nDifficulty: " + str(self.difficulty)
-    

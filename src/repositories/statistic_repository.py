@@ -28,9 +28,9 @@ class StatisticRepository:
         )
         rows = cursor.fetchall()
         return list(map(get_stat_by_row, rows))
-    
+
     def find_all_by_maxtime(self, maxtime):
-            
+
         cursor = self._connection.cursor()
         cursor.execute(
             "select * from users where time <= ?",

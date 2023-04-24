@@ -56,21 +56,21 @@ class GameService:
                 # swap two columns in the grid
                 for i in range(size):
                     grid[i][columns[0]], grid[i][columns[1]
-                                                    ] = grid[i][columns[1]], grid[i][columns[0]]
+                                                 ] = grid[i][columns[1]], grid[i][columns[0]]
                 block += boxsize
 
             # swap two row blocks in the grid
             blocks = random.sample(range(0, size, boxsize), 2)
             for i in range(boxsize):
                 grid[blocks[0] + i], grid[blocks[1] +
-                                            i] = grid[blocks[1] + i], grid[blocks[0] + i]
+                                          i] = grid[blocks[1] + i], grid[blocks[0] + i]
 
             # swap two column blocks in the grid
             blocks = random.sample(range(0, size, boxsize), 2)
             for i in range(boxsize):
                 for j in range(size):
                     grid[j][blocks[0] + i], grid[j][blocks[1] +
-                                            i] = grid[j][blocks[1] + i], grid[j][blocks[0] + i]
+                                        i] = grid[j][blocks[1] + i], grid[j][blocks[0] + i]
 
         sudoku.grid = copy.deepcopy(grid)
         sudoku.solution = copy.deepcopy(grid)

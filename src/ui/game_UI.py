@@ -1,6 +1,5 @@
 import pygame
 from services.game_service import GameService
-from .button import Button
 from .draw_sudoku import DrawSudoku
 from .draw_screens import DrawScreens
 import sys
@@ -8,7 +7,7 @@ import sys
 
 class UI:
 
-    def __init__(self):
+    def __init__(self, save_time):
         pygame.init()
         self._current_screen = "start"
         self._screen = pygame.display.set_mode((550, 700))
@@ -18,6 +17,7 @@ class UI:
         self._game_difficulty = 0
         self.drawer = DrawScreens(self._increase_difficulty, self._decrease_difficulty,
                                   self._sudoku_screen, self._quit_screen, self._game_difficulty)
+        self._save_time = save_time
 
     def _run(self):
         # runs the main pygame window loop, drawing the current screen and handling events
@@ -30,7 +30,7 @@ class UI:
             self.drawer.draw_wait_screen(self._screen)
             sudoku = gameService.generate_sudoku(9, 15 - self._game_difficulty)
             self._clock.tick(30)
-            play = DrawSudoku(sudoku, self._start_screen)
+            play = DrawSudoku(sudoku, self._start_screen, self._save_time)
             play.draw(self._screen)
 
         pygame.display.flip()

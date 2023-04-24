@@ -1,5 +1,6 @@
 from math import sqrt
 import pygame
+import datetime
 from .button import Button
 
 
@@ -7,7 +8,7 @@ class DrawSudoku:
 
     # draws and creates the elements of the sudoku playing screen
 
-    def __init__(self, sudoku, start_screen):
+    def __init__(self, sudoku, start_screen, save_time_popup):
         self.sudoku = sudoku
         self.objects = []
         self.undo_stack = []
@@ -18,6 +19,7 @@ class DrawSudoku:
         self._seconds = 0
         self._milliseconds = 0
         self._start_screen = start_screen
+        self._save_time_popup = save_time_popup
 
     def solved_graphic(self, screen):
         # displays the solved screen
@@ -39,7 +41,10 @@ class DrawSudoku:
         self.solved = True
 
     def _save_time(self):
-        pass
+        pygame.quit()
+        date = datetime.datetime.now()
+        time = self._minutes * 60 + self._seconds + self._milliseconds / 1000
+        self._save_time_popup(time, date)
 
     def _draw_lines(self, screen):
         # draws the lines of the sudoku grid and the 3x3 boxes
@@ -118,4 +123,4 @@ class DrawSudoku:
         self.objects.append(Button(50, 550, 100, 50, "Undo", (255, 255, 255), (200, 200, 200), (
             0, 0, 0), pygame.font.SysFont("comicsans", 30), self._undo, True))
         self.objects.append(Button(400, 550, 100, 50, "Quit", (255, 255, 255), (
-                200, 200, 200), (0, 0, 0), self._font, self._start_screen, True))
+            200, 200, 200), (0, 0, 0), self._font, self._start_screen, True))

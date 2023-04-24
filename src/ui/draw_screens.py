@@ -1,6 +1,7 @@
 import pygame
 from .button import Button
 
+
 class DrawScreens:
 
     def __init__(self, increase_difficulty, decrease_difficulty, sudoku_screen, quit_screen, difficulty):
@@ -25,9 +26,9 @@ class DrawScreens:
         self.objects = []
         screen.fill((255, 192, 203))
         self.objects.append(Button(175, 100, 200, 50, "Start", (255, 255, 255),
-                             (200, 200, 200), (0, 0, 0), self._font, self._sudoku_screen))
+                                   (200, 200, 200), (0, 0, 0), self._font, self._sudoku_screen))
         self.objects.append(Button(175, 550, 200, 50, "Quit", (255, 255, 255),
-                             (200, 200, 200), (0, 0, 0), self._font, self._quit_screen))
+                                   (200, 200, 200), (0, 0, 0), self._font, self._quit_screen))
         screen.blit(self._font.render(
             "Difficulty:", 1, (0, 0, 0)), (200, 200))
         screen.blit(self._font.render(
@@ -36,7 +37,4 @@ class DrawScreens:
         self.objects.append(Button(
             325, 250, 50, 50, up[:-1], (255, 255, 255), (200, 200, 200), (0, 0, 0), self._font, self._increase_difficulty))
         self.objects.append(Button(325, 300, 50, 50, "\/", (255, 255, 255),
-                             (200, 200, 200), (0, 0, 0), self._font, self._decrease_difficulty))
-
-
-    
+                                   (200, 200, 200), (0, 0, 0), self._font, self._decrease_difficulty))

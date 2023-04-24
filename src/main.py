@@ -1,9 +1,10 @@
-from ui.game_UI import UI
+from ui.ui import UIControl
+
 
 def main():
-    start_screen = UI()
-    start_screen.show_screen()
+    control = UIControl()
+    control.start()
+
 
 if __name__ == "__main__":
     main()
-    
