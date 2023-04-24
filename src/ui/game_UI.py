@@ -2,6 +2,7 @@ import pygame
 from services.game_service import GameService
 from .button import Button
 from .draw_sudoku import DrawSudoku
+from .draw_screens import DrawScreens
 import sys
 
 
@@ -10,29 +11,27 @@ class UI:
     def __init__(self):
         pygame.init()
         self._current_screen = "start"
-        self._objects = []
         self._screen = pygame.display.set_mode((550, 700))
         pygame.display.set_caption("Sudoku")
         self._font = pygame.font.SysFont("comicsans", 30)
         self._clock = pygame.time.Clock()
         self._game_difficulty = 0
+        self.drawer = DrawScreens(self._increase_difficulty, self._decrease_difficulty,
+                                  self._sudoku_screen, self._quit_screen, self._game_difficulty)
 
     def _run(self):
         # runs the main pygame window loop, drawing the current screen and handling events
-        self._objects = []
 
         if self._current_screen == "start":
-            self._draw_start_screen()
+            self.drawer.draw_start_screen(self._screen)
 
         elif self._current_screen == "playSudoku":
             gameService = GameService()
-            self._draw_wait_screen()
+            self.drawer.draw_wait_screen(self._screen)
             sudoku = gameService.generate_sudoku(9, 15 - self._game_difficulty)
             self._clock.tick(30)
-            play = DrawSudoku(sudoku)
+            play = DrawSudoku(sudoku, self._start_screen)
             play.draw(self._screen)
-            self._objects.append(Button(400, 550, 100, 50, "Quit", (255, 255, 255), (
-                200, 200, 200), (0, 0, 0), self._font, self._start_screen, True))
 
         pygame.display.flip()
 
@@ -79,10 +78,10 @@ class UI:
                             elif event.key == pygame.K_BACKSPACE:
                                 play.selected.text = ""
                                 play.sudoku.update_grid(row, col, 0)
-            for obj in self._objects:
-                obj.draw(self._screen)
-                obj.process()
             if self._current_screen == "start":
+                for obj in self.drawer.objects:
+                    obj.draw(self._screen)
+                    obj.process()
                 self._screen.fill((255, 192, 203), (250, 270, 40, 40))
                 self._screen.blit(self._font.render(
                     str(self._game_difficulty), 1, (0, 0, 0)), (250, 270))
@@ -104,31 +103,6 @@ class UI:
 
     def _quit_screen(self):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
-
-    def _draw_wait_screen(self):
-        self._screen.fill((255, 255, 255))
-        self._screen.blit(self._font.render(
-            "Generating your sudoku,", 1, (0, 0, 0)), (100, 200))
-        self._screen.blit(self._font.render(
-            "please wait...", 1, (0, 0, 0)), (180, 300))
-        pygame.display.flip()
-
-    def _draw_start_screen(self):
-        # draws and creates the elements of the start screen
-        self._screen.fill((255, 192, 203))
-        self._objects.append(Button(175, 100, 200, 50, "Start", (255, 255, 255),
-                             (200, 200, 200), (0, 0, 0), self._font, self._sudoku_screen))
-        self._objects.append(Button(175, 550, 200, 50, "Quit", (255, 255, 255),
-                             (200, 200, 200), (0, 0, 0), self._font, self._quit_screen))
-        self._screen.blit(self._font.render(
-            "Difficulty:", 1, (0, 0, 0)), (200, 200))
-        self._screen.blit(self._font.render(
-            str(self._game_difficulty), 1, (0, 0, 0)), (250, 270))
-        up = "/\|"
-        self._objects.append(Button(
-            325, 250, 50, 50, up[:-1], (255, 255, 255), (200, 200, 200), (0, 0, 0), self._font, self._increase_difficulty))
-        self._objects.append(Button(325, 300, 50, 50, "\/", (255, 255, 255),
-                             (200, 200, 200), (0, 0, 0), self._font, self._decrease_difficulty))
 
     def _increase_difficulty(self):
         if self._game_difficulty < 15:

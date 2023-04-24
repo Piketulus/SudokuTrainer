@@ -19,7 +19,7 @@ def create_tables(connection):
     cursor.execute("""
         create table stats (
             name text,
-            time integer,
+            time real,
             date text
         );
     """)

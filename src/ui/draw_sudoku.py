@@ -7,7 +7,7 @@ class DrawSudoku:
 
     # draws and creates the elements of the sudoku playing screen
 
-    def __init__(self, sudoku):
+    def __init__(self, sudoku, start_screen):
         self.sudoku = sudoku
         self.objects = []
         self.undo_stack = []
@@ -17,23 +17,29 @@ class DrawSudoku:
         self._minutes = 0
         self._seconds = 0
         self._milliseconds = 0
+        self._start_screen = start_screen
 
     def solved_graphic(self, screen):
         # displays the solved screen
         self.selected.color = (255, 255, 255)
         self.selected.draw(screen)
         self.selected = None
-        for object in self.objects:
+        for object in self.objects[:-1]:
             object.text = ""
             object.draw(screen)
             pygame.display.flip()
             pygame.event.pump()
             pygame.time.wait(50)
-        self.objects = []
+        self.objects = self.objects[-1:]
         screen.fill((255, 255, 255), (0, 0, 550, 545))
         screen.blit(self._font.render("Solved!", 1, (0, 255, 0)), (225, 100))
+        self.objects.append(Button(50, 550, 100, 50, "Save", (255, 255, 255), (200, 200, 200), (
+            0, 0, 0), pygame.font.SysFont("comicsans", 30), self._save_time, True))
         pygame.display.flip()
         self.solved = True
+
+    def _save_time(self):
+        pass
 
     def _draw_lines(self, screen):
         # draws the lines of the sudoku grid and the 3x3 boxes
@@ -109,6 +115,7 @@ class DrawSudoku:
         self._draw_lines(screen)
         self._draw_boxes()
         self._draw_numbers()
-        undo_button = Button(50, 550, 100, 50, "Undo", (255, 255, 255), (200, 200, 200), (
-            0, 0, 0), pygame.font.SysFont("comicsans", 30), self._undo, True)
-        self.objects.append(undo_button)
+        self.objects.append(Button(50, 550, 100, 50, "Undo", (255, 255, 255), (200, 200, 200), (
+            0, 0, 0), pygame.font.SysFont("comicsans", 30), self._undo, True))
+        self.objects.append(Button(400, 550, 100, 50, "Quit", (255, 255, 255), (
+                200, 200, 200), (0, 0, 0), self._font, self._start_screen, True))
