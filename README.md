@@ -1,6 +1,6 @@
 # Sudoku Trainer
 
-This is a **fun** *project*!!
+Get the week 5 release [here](https://github.com/Piketulus/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Documentation
 
