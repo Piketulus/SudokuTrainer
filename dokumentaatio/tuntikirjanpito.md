@@ -8,10 +8,10 @@
 | 13.04 | 2 | restructuring UI code for expansion |
 | 14.04 | 3 | added new buttons and features (undo, quit, difficulty) |
 | 15.04 | 3 | added a timer to time completion time of sudoku and many new tests |
+| 23.04 | 2 | added the ability to save completion times |
+| 25.04 | 3 | added the ui for viewing saved times plus some general fixes/changes |
 |  |  |  |
 |  |  |  |
 |  |  |  |
-|  |  |  |
-|  |  |  |
-| Total | 19 |  | 
+| Total | 24 |  | 
 

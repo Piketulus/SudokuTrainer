@@ -17,7 +17,9 @@
 
 ## Week 5
 
-- 
+- Added a 'Save Time' button that comes up after completing a sudoku that allows a user to input a name identifier and save the time
+- Added a 'Saved Times' button to the main menu that takes the user a new window that displays all saved times
+- Updated colors on playing window and added an easter egg
 
 ## Week 6
 

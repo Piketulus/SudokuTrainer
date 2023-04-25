@@ -17,7 +17,7 @@ class DrawScreens:
 
     def draw_wait_screen(self, screen):
         
-        screen.fill((255, 255, 255))
+        screen.fill((255, 192, 203))
 
         screen.blit(self._font.render(
             "Generating your sudoku,", 1, (0, 0, 0)), (100, 200))
