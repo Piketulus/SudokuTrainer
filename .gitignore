@@ -4,5 +4,4 @@ __pycache__
 htmlcov
 
 #data files
-data/database.sqlite
-data/test-database.sqlite
+data/.sqlite
