@@ -70,7 +70,7 @@ class GameService:
             for i in range(boxsize):
                 for j in range(size):
                     grid[j][blocks[0] + i], grid[j][blocks[1] +
-                                        i] = grid[j][blocks[1] + i], grid[j][blocks[0] + i]
+                                            i] = grid[j][blocks[1] + i], grid[j][blocks[0] + i]
 
         sudoku.grid = copy.deepcopy(grid)
         sudoku.solution = copy.deepcopy(grid)

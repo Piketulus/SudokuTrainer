@@ -20,6 +20,7 @@ def create_tables(connection):
         create table stats (
             name text,
             time real,
+            difficulty integer,
             date text
         );
     """)

@@ -3,7 +3,7 @@ from database_connection import get_database_connection
 
 
 def get_stat_by_row(row):
-    return Statistic(row["name"], row["time"], row["date"]) if row else None
+    return Statistic(row["name"], row["time"], row["difficulty"], row["date"]) if row else None
 
 
 class StatisticRepository:
@@ -15,7 +15,7 @@ class StatisticRepository:
     def find_all(self):
 
         cursor = self._connection.cursor()
-        cursor.execute("select * from users")
+        cursor.execute("select * from stats")
         rows = cursor.fetchall()
         return list(map(get_stat_by_row, rows))
 
@@ -23,7 +23,7 @@ class StatisticRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "select * from users where name = ?",
+            "select * from stats where name = ?",
             (name,)
         )
         rows = cursor.fetchall()
@@ -33,8 +33,17 @@ class StatisticRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "select * from users where time <= ?",
+            "select * from stats where time <= ?",
             (maxtime,)
+        )
+        rows = cursor.fetchall()
+        return list(map(get_stat_by_row, rows))
+
+    def find_all_by_difficulty(self, difficulty):
+        cursor = self._connection.cursor()
+        cursor.execute(
+            "select * from stats where difficulty = ?",
+            (difficulty,)
         )
         rows = cursor.fetchall()
         return list(map(get_stat_by_row, rows))
@@ -43,8 +52,8 @@ class StatisticRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "insert into users (name, time, date) values (?, ?, ?)",
-            (statistic.name, statistic.time, statistic.date)
+            "insert into stats (name, time, difficulty, date) values (?, ?, ?, ?)",
+            (statistic.name, statistic.time, statistic.difficulty, statistic.date)
         )
         self._connection.commit()
 

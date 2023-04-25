@@ -2,3 +2,7 @@
 __pycache__
 .coverage
 htmlcov
+
+#data files
+data/database.sqlite
+data/test-database.sqlite

@@ -1,17 +1,20 @@
 
 from tkinter import Tk, ttk
+from services.statistic_service import statistic_service
 
 
 class SaveTimePopup:
 
-    def __init__(self, time, date, show_game):
+    def __init__(self, time, difficulty, date, show_game):
         self.time = time
+        self.difficulty = difficulty
         self.date = date
         self.name = None
         self._show_game = show_game
 
         self._root = Tk()
         self._root.title("Save Time")
+        self._root.geometry("+811+439")
         self._style = ttk.Style()
         self._style.configure("TFrame", background="#FFCCCC")
         self._root.eval("tk::PlaceWindow . center")
@@ -37,6 +40,9 @@ class SaveTimePopup:
         cancel_button.grid(row=1, column=1, padx=5, pady=5)
 
     def _save(self):
+        self.name = self._frame.children["!entry"].get()
+        statistic_service.create_statistic(
+            self.name, self.time, self.difficulty, self.date)
         self._root.destroy()
         self._show_game()
 

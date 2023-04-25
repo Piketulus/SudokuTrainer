@@ -21,7 +21,7 @@ Beyond the basic version, the application can be expanded (if I have the time) w
 
 - Practice mode, where given a new random puzzle, the user has to fill in one number as quickly as possible
   - Completion times stores, average completion time shown
-- Can make notes on the sudoku board (list possible values in a square)
+- Can undo actions on the sudoku board
 - Completion times are recorded with an inputted signature (name) so users on the same device can differentiate their times.
 - Viewing times can be filtered (by name, time, difficulty)
 - Double sudoku mode: play two sudoku at once, but both must be played concurrently one input at a time (first put a number into puzzle 1, then have to put a number into puzzle 2 before being able to input into 1 again)
