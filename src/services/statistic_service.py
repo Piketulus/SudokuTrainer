@@ -20,17 +20,9 @@ class StatisticService:
 
         return self._statistic_repository.find_all()
 
-    def get_all_by_name(self, name):
+    def get_all_by_filter(self, name, maxtime, difficulty):
 
-        return self._statistic_repository.find_all_by_name(name)
-
-    def get_all_by_maxtime(self, maxtime):
-
-        return self._statistic_repository.find_all_by_maxtime(maxtime)
-
-    def get_all_by_difficulty(self, difficulty):
-
-        return self._statistic_repository.find_all_by_difficulty(difficulty)
+        return self._statistic_repository.find_all_by_filter(name, maxtime, difficulty)
 
 
 statistic_service = StatisticService()

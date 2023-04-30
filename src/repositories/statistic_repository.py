@@ -19,32 +19,22 @@ class StatisticRepository:
         rows = cursor.fetchall()
         return list(map(get_stat_by_row, rows))
 
-    def find_all_by_name(self, name):
+    def find_all_by_filter(self, name, maxtime, difficulty):
+
+        name = "%" + name + "%"
 
         cursor = self._connection.cursor()
-        cursor.execute(
-            "select * from stats where name = ?",
-            (name,)
-        )
-        rows = cursor.fetchall()
-        return list(map(get_stat_by_row, rows))
 
-    def find_all_by_maxtime(self, maxtime):
-
-        cursor = self._connection.cursor()
-        cursor.execute(
-            "select * from stats where time <= ?",
-            (maxtime,)
-        )
-        rows = cursor.fetchall()
-        return list(map(get_stat_by_row, rows))
-
-    def find_all_by_difficulty(self, difficulty):
-        cursor = self._connection.cursor()
-        cursor.execute(
-            "select * from stats where difficulty = ?",
-            (difficulty,)
-        )
+        if difficulty == "All":
+            cursor.execute(
+                "select * from stats where name like ? and time <= ?",
+                (name, maxtime)
+            )
+        else:
+            cursor.execute(
+                "select * from stats where name like ? and time <= ? and difficulty = ?",
+                (name, maxtime, difficulty)
+            )
         rows = cursor.fetchall()
         return list(map(get_stat_by_row, rows))
 

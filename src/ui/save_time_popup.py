@@ -1,5 +1,5 @@
 
-from tkinter import Tk, ttk
+from tkinter import Tk, messagebox, ttk
 from services.statistic_service import statistic_service
 
 
@@ -41,11 +41,17 @@ class SaveTimePopup:
 
     def _save(self):
         self.name = self._frame.children["!entry"].get()
-        statistic_service.create_statistic(
-            self.name, self.time, self.difficulty, self.date)
-        self._root.destroy()
-        self._show_game()
+        if self.name == "":
+            self._display_error_message()
+        else:
+            statistic_service.create_statistic(
+                self.name, self.time, self.difficulty, self.date)
+            self._root.destroy()
+            self._show_game()
 
     def _cancel(self):
         self._root.destroy()
         self._show_game()
+
+    def _display_error_message(self):
+        messagebox.showerror("Error", "Input a name!")

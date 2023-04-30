@@ -23,4 +23,8 @@
 
 ## Week 6
 
-- 
+- Saving completions times now requires the user to input a name (previously could be left empty)
+- Added filtering options to viewing saved times:
+    - Name: searches for a name or part of a name
+    - Maxtime: specifies the maximum completion time of records to be shown
+    - Difficulty: specifies the difficulty of the records to be shown
