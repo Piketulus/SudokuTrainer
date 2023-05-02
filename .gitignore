@@ -2,6 +2,7 @@
 __pycache__
 .coverage
 htmlcov
+.vscode
 
 #data files
-data/.sqlite
+data/database.sqlite
