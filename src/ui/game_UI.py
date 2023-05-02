@@ -6,8 +6,18 @@ import sys
 
 
 class UI:
+    """
+    Class that handles the pygame window and the game loop.
+    """
 
     def __init__(self, save_time, show_statistics_view):
+        """
+         Constructor for the game UI class.
+
+         Args:
+                 save_time: function to display the save time popup.
+                 show_statistics_view: function to display the statistics view.
+        """
         pygame.init()
         self._current_screen = "start"
         self._screen = pygame.display.set_mode((550, 700))
@@ -109,7 +119,7 @@ class UI:
                 except:
                     pygame.quit()
                     sys.exit()
-            
+
             try:
                 pygame.display.flip()
             except:
@@ -117,6 +127,9 @@ class UI:
                 sys.exit()
 
     def show_screen(self):
+        """
+         Show the screen of the game
+        """
         self._run()
 
     def _quit_screen(self):

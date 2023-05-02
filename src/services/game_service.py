@@ -7,9 +7,25 @@ from entities.sudoku import Sudoku
 
 
 class GameService:
-    # logic and generation of game
+    """
+    Class responsible for generating sudoku puzzle and handling their logic.
+    """
 
     def _valid_placement(self, size, grid, row, col, num):
+        """
+         Checks if num is valid to place in row col. 
+         This is used to check if a certain value ( grid ) can be placed in a cell ( row col )
+
+         Args:
+                 size: Size of the grid
+                 grid: the sudoku grid (2d list)
+                 row: Row index of the cell to place in
+                 col: Column index of the cell to place in
+                 num: Number to be placed in the cell
+
+         Returns: 
+                 True if num is valid False if not
+        """
         # check if num is valid in row
         for i in range(size):
             if grid[row][i] == num:
@@ -31,6 +47,13 @@ class GameService:
         return True
 
     def _create_random_solution(self, sudoku):
+        """
+         Creates a random solution for the sudoku by shuffling.
+
+         Args:
+                 sudoku: The Sudoku object to be manipulated
+        """
+
         size = sudoku.size
         boxsize = int(sqrt(size))
         # Baseline Sudoku with numbers filled in
@@ -76,6 +99,20 @@ class GameService:
         sudoku.solution = copy.deepcopy(grid)
 
     def _solve(self, sudoku, row=0, col=0, test_unique=False):
+        """
+         Solves a sudoku using backtracking. This is a recursive function 
+         that tries to find a solution starting in the given row and column.
+
+         Args:
+                 sudoku: The Sudoku object to be solved
+                 row: The row of the sudoku to start with
+                 col: The column of the sudoku to start with
+                 test_unique: If True will test for multiple solutions
+
+         Returns: 
+                 True if there is a solution False if not. 
+                 With test_unique, returns True if there are multiple solutions.
+        """
         # solves a sudoku using backtracking
         grid = sudoku.grid
 
@@ -99,8 +136,14 @@ class GameService:
         return False
 
     def _create_puzzle(self, sudoku):
-        # creates a puzzle from a solved sudoku by trying to
-        # remove numbers while keeping the sudoku uniquely solvable
+        """
+         Creates a puzzle from a solved sudoku by trying to 
+         remove numbers while keeping the sudoku uniquely solvable.
+
+         Args:
+                 sudoku: The Sudoku object to create the puzzle in
+        """
+
         self._create_random_solution(sudoku)
 
         grid = sudoku.grid
@@ -137,10 +180,28 @@ class GameService:
             choose_from_set.remove(remove)
 
     def _handler(self, signum, frame):
+        """
+         Signal handler for signals. This is called in response to 
+         SIGALRM and will raise : exc : ` TimeoutError `.
+
+         Args:
+                 signum: The signal that was received
+                 frame: The stack frame of the signal
+        """
         raise TimeoutError
 
     def generate_sudoku(self, size, difficulty):
-        # called from outside the class to generate a sudoku given a size and difficulty
+        """
+         Generate a sudoku of the given size and difficulty. 
+         This is a blocking call until the puzzle is created or a timeout occurs.
+
+         Args:
+                 size: The size of the sudoku.
+                 difficulty: The difficulty of the sudoku.
+
+         Returns: 
+                 An instance of the Sudoku class with the generated puzzle.
+        """
         sudoku = Sudoku(size, difficulty)
         done = False
         signal.signal(signal.SIGALRM, self._handler)

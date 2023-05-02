@@ -4,8 +4,17 @@ from services.statistic_service import statistic_service
 
 
 class StatisticsView:
+    """
+    Class that shows the statistics viewing window.
+    """
 
     def __init__(self, show_game):
+        """
+         Class constructor for the statistics window. Initializes and shows the window.
+
+         Args:
+                 show_game: function to show the game window.
+        """
         self._show_game = show_game
 
         self._root = Tk()
@@ -34,22 +43,28 @@ class StatisticsView:
         filter_label = ttk.Label(
             master=self._frame, text="Filter:", background="#FFCCCC")
         filter_label.grid(row=0, column=0, padx=5, pady=5)
-        name_filter_label = ttk.Label(master=self._frame, text="Name:", background="#FFCCCC")
+        name_filter_label = ttk.Label(
+            master=self._frame, text="Name:", background="#FFCCCC")
         name_filter_label.grid(row=0, column=1, padx=5, pady=5)
         self._name_filter_entry = ttk.Entry(master=self._frame)
         self._name_filter_entry.grid(row=1, column=1, padx=5, pady=5)
-        maxtime_filter_label = ttk.Label(master=self._frame, text="Max time (secs):", background="#FFCCCC")
+        maxtime_filter_label = ttk.Label(
+            master=self._frame, text="Max time (secs):", background="#FFCCCC")
         maxtime_filter_label.grid(row=0, column=2, padx=5, pady=5)
         self._maxtime_filter_entry = ttk.Entry(master=self._frame)
         self._maxtime_filter_entry.grid(row=1, column=2, padx=5, pady=5)
-        difficulty_filter_label = ttk.Label(master=self._frame, text="Difficulty:", background="#FFCCCC")
+        difficulty_filter_label = ttk.Label(
+            master=self._frame, text="Difficulty:", background="#FFCCCC")
         difficulty_filter_label.grid(row=0, column=3, padx=5, pady=5)
-        self._difficulty_filter_dropdown = ttk.Combobox(master=self._frame, values=["All", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], state="readonly")
+        self._difficulty_filter_dropdown = ttk.Combobox(master=self._frame, values=[
+                                                        "All", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], state="readonly")
         self._difficulty_filter_dropdown.grid(row=1, column=3, padx=5, pady=5)
         self._difficulty_filter_dropdown.current(0)
-        search_button = ttk.Button(master=self._frame, text="Search", command=self._get_stats_table_by_filter)
+        search_button = ttk.Button(
+            master=self._frame, text="Search", command=self._get_stats_table_by_filter)
         search_button.grid(row=1, column=4, padx=5, pady=5)
-        reset_button = ttk.Button(master=self._frame, text="Reset", command=self._reset)
+        reset_button = ttk.Button(
+            master=self._frame, text="Reset", command=self._reset)
         reset_button.grid(row=0, column=4, padx=5, pady=5)
 
     def _back_to_game(self):
@@ -94,7 +109,7 @@ class StatisticsView:
             self._maxtime_filter_entry.delete(0, "end")
             self._maxtime_filter_entry.insert(0, "Please enter an integer")
             return
-        
+
         if self._stats_table:
             self._delete_table()
 

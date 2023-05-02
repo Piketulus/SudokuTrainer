@@ -39,4 +39,3 @@ class TestStatisticRepository(unittest.TestCase):
         stats = statistic_repository.find_all_by_filter("Joel", 50, "All")
 
         self.assertEqual(len(stats), 0)
-        

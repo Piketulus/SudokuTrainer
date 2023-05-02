@@ -5,10 +5,20 @@ from .button import Button
 
 
 class DrawSudoku:
-
-    # draws and creates the elements of the sudoku playing screen
+    """
+    Class that draws and creates the elements of the sudoku playing screen
+    """
 
     def __init__(self, sudoku, start_screen, save_time_popup, difficulty):
+        """
+         Class constructor for the drawer.
+
+         Args:
+                 sudoku: The Sudoku to be drawn and played on
+                 start_screen: function to display the start screen.
+                 save_time_popup: function to display the save time popup.
+                 difficulty: The difficulty of the sudoku.
+        """
         self.sudoku = sudoku
         self.objects = []
         self.undo_stack = []
@@ -23,28 +33,35 @@ class DrawSudoku:
         self._difficulty = difficulty
 
     def solved_graphic(self, screen):
-        # displays the solved screen
+        """
+         Displays the solved graphic. It is called when the sudoku is solved.
+
+         Args:
+                 screen: The screen to draw on
+        """
         self.selected.color = (255, 255, 255)
         self.selected.draw(screen)
         self.selected = None
-        
+
         for object in self.objects[:-1]:
             object.text = ""
             object.draw(screen)
             pygame.display.flip()
             pygame.event.pump()
             pygame.time.wait(50)
-        
+
         self.objects = self.objects[-1:]
         screen.fill((255, 192, 203), (0, 0, 550, 545))
 
         if self._difficulty == 15:
-            screen.blit(pygame.image.load("dokumentaatio/kuvat/secret.jpg"), (125, 50))
+            screen.blit(pygame.image.load(
+                "dokumentaatio/kuvat/secret.jpg"), (125, 50))
 
-        screen.blit(pygame.font.SysFont("comicsans", 60).render("Solved!", 1, (0, 200, 0)), (170, 200))
+        screen.blit(pygame.font.SysFont("comicsans", 60).render(
+            "Solved!", 1, (0, 200, 0)), (170, 200))
         self.objects.append(Button(50, 550, 150, 50, "Save Time", (255, 255, 255), (200, 200, 200), (
             0, 0, 0), pygame.font.SysFont("comicsans", 30), self._save_time, True))
-        
+
         pygame.display.flip()
         self.solved = True
 
@@ -105,7 +122,13 @@ class DrawSudoku:
             self.sudoku.update_grid(row, col, number)
 
     def update_time(self, screen, time):
-        # updates the time on the screen
+        """
+         Updates the time on the screen. This is called every frame to update the time and also to update the time displayed on the screen
+
+         Args:
+                 screen: The screen to draw on
+                 time: The time to add to the current time in milliseconds
+        """
         if self._milliseconds > 1000:
             self._seconds += 1
             self._milliseconds -= 1000
@@ -122,7 +145,12 @@ class DrawSudoku:
         screen.blit(time_text, (190, 620))
 
     def draw(self, screen):
-        # draws the sudoku grid and the buttons onto the given screen, called from outside the class
+        """
+         Draws the sudoku onto the given screen.
+
+         Args:
+                 screen: The screen to draw on
+        """
         screen.fill((255, 192, 203))
         screen.fill((255, 255, 255), (50, 50, 451, 451))
         self._draw_lines(screen)

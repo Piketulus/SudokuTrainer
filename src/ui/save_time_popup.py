@@ -4,8 +4,20 @@ from services.statistic_service import statistic_service
 
 
 class SaveTimePopup:
+    """
+    Class that shows the save time popup.
+    """
 
     def __init__(self, time, difficulty, date, show_game):
+        """
+         Class constructor for the save time popup. Initializes and shows the popup.
+
+         Args:
+                 time: time in which the game was completed in seconds.
+                 difficulty: The difficulty of the completed game.
+                 date: The date of completion.
+                 show_game: function to show the game window.
+        """
         self.time = time
         self.difficulty = difficulty
         self.date = date

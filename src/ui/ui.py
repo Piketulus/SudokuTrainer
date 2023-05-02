@@ -6,8 +6,14 @@ from .statistics_view import StatisticsView
 
 
 class UIControl:
+    """
+    Class that handles the main control of the different UI screens to allow for switching between them.
+    """
 
     def start(self):
+        """
+         Start the UI by showing the game screen.
+        """
         self._show_game()
 
     def _show_game(self):
