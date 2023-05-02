@@ -38,8 +38,8 @@ The program starts with the start menu:
 
 The start menu has the following buttons:
  - Start: Starts a sudoku game of the selected difficulty
- - /\: increases the difficulty
- - \/: decreases the difficulty
+ - "/\": increases the difficulty
+ - "\/": decreases the difficulty
  - Saved times: Opens the saved times window
  - Quit: Quits the program
 

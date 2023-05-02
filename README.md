@@ -8,6 +8,7 @@ Get the week 5 release [here](https://github.com/Piketulus/ot-harjoitustyo/relea
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./dokumentaatio/changelog.md)
 - [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
+- [Käyttöohje](./dokumentaatio/kayttoohje.md)
 
 ## Set-up
 
