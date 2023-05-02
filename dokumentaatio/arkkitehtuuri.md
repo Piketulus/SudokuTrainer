@@ -20,7 +20,7 @@ Each of these have been implemented in their own classes and only one view is vi
 
 The logical data model of the application is made up of the classes [Sudoku](../src/entities/sudoku.py) and [Statistic](../src/entities/statistic.py), which describe the Sudoku puzzle and statistics of a completed sudoku:
 
-```mermaids
+```mermaid
  classDiagram
       Sudoku "1" --> "1" Statistic
       class Sudoku{
