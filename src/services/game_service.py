@@ -159,7 +159,9 @@ class GameService:
         choose_from_set = set(range(sudoku.size * sudoku.size))
 
         while len(square_set) > 25 + sudoku.difficulty:
-            remove = random.choice(list(square_set))
+            if len(choose_from_set) == 0:
+                break
+            remove = random.choice(list(choose_from_set))
             row = remove // sudoku.size
             col = remove % sudoku.size
             if len(number_locations[grid[row][col] - 1]) == 1:
