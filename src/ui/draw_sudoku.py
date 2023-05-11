@@ -132,7 +132,7 @@ class DrawSudoku:
         if self._milliseconds > 1000:
             self._seconds += 1
             self._milliseconds -= 1000
-        if self._seconds > 60:
+        if self._seconds > 59:
             self._minutes += 1
             self._seconds -= 60
         self._milliseconds += time
