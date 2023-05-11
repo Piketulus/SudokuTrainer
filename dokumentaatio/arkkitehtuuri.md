@@ -75,3 +75,23 @@ Once the user has selected the wanted difficulty and pressed the start button, t
 
 ```
 Once the user presses the start button, the screen changes into a loading screen while the UI calls on the application logic class GameService's method generate_sudoku, passing as arguments the size and difficulty of the sudoku. A new Sudoku entity is initialized, and using the _create_puzzle method, a  new sudoku puzzle is created and then returned to the UI. Using the Sudoku, the UI can now draw it onto the screen so the user can start playing.
+
+### Saving a time
+
+Once the user has completed a sudoku and pressed the save button, the sequence of events is as follows:
+
+```mermaid
+
+    sequenceDiagram
+        actor User
+        User->>UI: completed sudoku and click 'Save' button
+        UI->>UI: _show_save_time_popup(time, difficulty, date)
+        User->>UI: enter name and click 'Save' button
+        User-->>UI: name
+        UI->>StatisticService: create_statistic(name, time, difficulty, date)
+        StatisticService->>statistic: Statistic(name, time, difficulty, date)
+        StatisticService->>StatisticRepository: create(statistic)
+        UI->>UI: _show_game()
+
+```
+Once the user presses the save button, a pop up screen appears asking the user for a name, passing as arguments the completion time, difficulty, and date of the sudoku. After the user has entered a name, the UI calls on the application logic class StatisticService's method create_statistic, passing as arguments the name, time, difficulty, and date. A new Statistic entity is initialized, and using the create method of the statistics repository class, the new statistic is saved into the database. The UI then returns to the game screen.
