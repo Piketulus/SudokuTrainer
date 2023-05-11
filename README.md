@@ -9,6 +9,7 @@ Get the week 6 release [here](https://github.com/Piketulus/ot-harjoitustyo/relea
 - [Changelog](./dokumentaatio/changelog.md)
 - [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
+- [Testausdokumentti](./dokumentaatio/testaus.md)
 
 ## Set-up
 

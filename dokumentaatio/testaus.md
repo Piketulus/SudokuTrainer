@@ -28,8 +28,6 @@ The application has been downloaded and tested as described in the [user manual]
 
 ### Functionality
 
-Kaikki [määrittelydokumentin](./vaatimusmaarittely.md#perusversion-tarjoama-toiminnallisuus) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä.
-
 All the functionalities listed in the [specification document](./vaatimusmaarittely.md#basic-functionality) and the user manual have been tested.
 
 ## Quality issues in the application
