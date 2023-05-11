@@ -1,12 +1,8 @@
-import os
 from invoke import task
-from src.config import DATABASE_FILE_PATH
 
 
 @task
 def start(ctx):
-    if not os.path.isfile(DATABASE_FILE_PATH):
-        ctx.run("python3 src/build.py", pty=True)
     ctx.run("python3 src/main.py", pty=True)
 
 

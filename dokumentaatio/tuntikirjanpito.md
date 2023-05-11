@@ -11,6 +11,5 @@
 | 23.04 | 2 | added the ability to save completion times |
 | 25.04 | 3 | added the ui for viewing saved times plus some general fixes/changes |
 | 30.04 | 2 | added error for trying to save time with no name and filtering options for viewing saved times |
-| 11.05 | 1 | removed the need to run build command before starting the app |
-| Total | 27 |  | 
+| Total | 26 |  | 
 

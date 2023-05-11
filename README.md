@@ -18,7 +18,13 @@ Get the week 6 release [here](https://github.com/Piketulus/ot-harjoitustyo/relea
 poetry install
 ```
 
-2. Start the app with:
+2. Perform the required initialization with:
+
+```bash
+poetry run invoke build
+```
+
+3. Start the app with:
 
 ```bash
 poetry run invoke start

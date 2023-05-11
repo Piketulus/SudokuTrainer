@@ -18,6 +18,12 @@ Before running the program, install the dependencies with the command:
 poetry install
 ```
 
+After that, run the initialization with the command:
+
+```bash
+poetry run invoke build
+```
+
 Now the program can be started with the command:
 
 ```
